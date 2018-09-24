@@ -1,0 +1,18 @@
+uuid: 6e822f65-5631-4aba-9740-7b6dfe960e4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.rotator
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.rotator
+target_entity_type_id: block_content
+target_bundle: rotator
+default_langcode: site_default
+language_alterable: true

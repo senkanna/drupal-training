@@ -1,0 +1,8 @@
+uuid: d1749150-51f7-4e81-83a2-79af82f546ee
+langcode: en
+status: true
+dependencies: {  }
+id: test_restricted_block
+label: 'test restricted block'
+revision: 0
+description: 'test restricted block desc'
