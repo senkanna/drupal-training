@@ -1,0 +1,20 @@
+uuid: 4a73e1f9-cb6f-4104-9fc7-fb09a306be13
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - node
+id: node.field_rotator
+field_name: field_rotator
+entity_type: node
+type: entity_reference
+settings:
+  target_type: block_content
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
