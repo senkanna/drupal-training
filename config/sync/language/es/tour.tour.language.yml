@@ -4,7 +4,6 @@ tips:
     label: Idiomas
     body: '<p>La página "Idiomas" le permite añadir, editar, borrar y reordenar los idiomas para el sitio.</p>'
   language-add:
-    label: 'Adding languages'
     body: '<p>Para añadir más idiomas a su sitio, haga clic en el botón "Añadir idioma".</p><p>Los idiomas añadidos se mostrarán en la lista de idiomas y pueden entonces ser editados o borrados.</p>'
   language-reorder:
     label: 'Reordenando idiomas'
