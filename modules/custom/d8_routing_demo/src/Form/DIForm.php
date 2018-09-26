@@ -28,12 +28,21 @@ class DIForm extends FormBase {
     );
   }
 	public function buildForm(array $form, FormStateInterface $form_state) {
+   $results = $this->db->select('d8_demo', 'dd')
+      ->fields('dd')
+      ->orderBy('id', 'DESC')
+      ->range(0,1)
+      ->execute()
+      ->fetchAll();
+    $last_value = $results[0];
+
     $form ['first_name'] = [
       '#type' => 'textfield',
       '#title' => t('First Name'),
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
+      '#default_value' => $last_value->first_name
     ];
     $form['last_name'] = [
       '#type' => 'textfield',
@@ -41,6 +50,7 @@ class DIForm extends FormBase {
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
+      '#default_value' => $last_value->last_name
     ];
      
 
