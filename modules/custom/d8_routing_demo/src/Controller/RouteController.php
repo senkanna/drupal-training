@@ -41,11 +41,7 @@ class RouteController {
 	      '#type' => '#markup',
 	      '#markup' => $node->getTitle() . '|' . $owner,
 	    ];
-  }
-   public function listNodeAccess(NodeInterface $node, AccountInterface $account) {
-    return AccessResult::allowedIf(
-      $node->getOwnerId() === $account->id()
-    );
-  }
+    }
+	
 
  }
