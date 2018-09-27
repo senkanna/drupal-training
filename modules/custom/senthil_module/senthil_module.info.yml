@@ -1,0 +1,8 @@
+name: 'senthil module'
+type: module
+description: 'Senthils Awesome Module'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - node
+  - user

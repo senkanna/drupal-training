@@ -1,0 +1,25 @@
+
+senthil_module.route_controller_helloWorld:
+  path: 'hello-world'
+  defaults:
+    _controller: '\Drupal\senthil_module\Controller\RouteController::helloWorld'
+    _title: 'Hello World'
+  requirements:
+    _permission: 'access content'
+
+senthil_module.route_controller_helloDynamic:
+  path: 'hello/{name}'
+  defaults:
+    _controller: '\Drupal\senthil_module\Controller\RouteController::helloDynamic'
+    _title: 'Hello Dynamic'
+  requirements:
+    _permission: 'access content'
+
+senthil_module.simple_form:
+  path: 'simple-form'
+  defaults:
+    _form: '\Drupal\senthil_module\Form\SimpleForm'
+    _title: 'SimpleForm'
+  requirements:
+    _access: 'TRUE'
+  

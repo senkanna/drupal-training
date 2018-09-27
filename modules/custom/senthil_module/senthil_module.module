@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains senthil_module.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function senthil_module_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the senthil_module module.
+    case 'help.page.senthil_module':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Senthil&#039;s Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}

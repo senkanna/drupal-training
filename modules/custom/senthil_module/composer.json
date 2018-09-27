@@ -1,0 +1,14 @@
+{
+  "name": "drupal/senthil_module",
+  "type": "drupal-module",
+  "description": "Senthil's Awesome Module",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/senthil_module",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/senthil_module",
+    "source": "http://cgit.drupalcode.org/senthil_module"
+  },
+  "require": { }
+}
