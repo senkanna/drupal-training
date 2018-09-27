@@ -1,0 +1,20 @@
+uuid: f2a393c5-6177-4323-b294-4c3c93466e71
+langcode: en
+status: true
+dependencies:
+  module:
+    - d8_routing_demo
+  theme:
+    - bartik
+id: testblock_3
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: test_block
+settings:
+  id: test_block
+  label: 'Test block'
+  provider: d8_routing_demo
+  label_display: visible
+visibility: {  }

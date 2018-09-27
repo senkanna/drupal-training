@@ -2,10 +2,6 @@ uuid: f67c4002-9b7f-46a4-a47c-1d1df8dec490
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:rotator:5b16812b-36ab-4af8-a3a3-4597e0fcbd98'
-  module:
-    - block_content
   theme:
     - bartik
 id: testblock

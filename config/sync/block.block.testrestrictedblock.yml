@@ -2,10 +2,7 @@ uuid: 6089e0dc-8efe-491c-9696-34b95ca6a643
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:test_restricted_block:5afeb08f-56cd-45a9-9a14-4c4a82fcc2be'
   module:
-    - block_content
     - language
   theme:
     - bartik
