@@ -1,81 +1,60 @@
 <?php
 
 namespace Drupal\d8_routing_demo\Form;
-
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Database\Connection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\d8_routing_demo\Controller\DataController;
 
+class DIForm extends FormBase{
+    protected $dc;
 
-class DIForm extends FormBase {
-  protected $db;
-
-  public function __construct(Connection $db){
-
-    $this->db = $db;
+ public function __construct(DataController $dc) {
+    $this->dc = $dc;
   }
-
-	public function getFormId() {
-		return 'd8_routing_demo_di_form';
-	}
-  /**
-   * {@inheritdoc}
-   */
+ public function getFormId() {
+    return 'd8_routing_demo_di_form';
+  }
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('database')
+      $container->get('d8_routing_demo.data_controller')
     );
   }
-	public function buildForm(array $form, FormStateInterface $form_state) {
-   $results = $this->db->select('d8_demo', 'dd')
-      ->fields('dd')
-      ->orderBy('id', 'DESC')
-      ->range(0,1)
-      ->execute()
-      ->fetchAll();
-    $last_value = $results[0];
+public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $form ['first_name'] = [
+   $last_value = $this->dc->getLastEntry();
+
+   $form ['first_name'] = [
       '#type' => 'textfield',
-      '#title' => t('First Name'),
+      '#title' => t('Enter First Name'),
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
-      '#default_value' => $last_value->first_name
+      '#default_value' => $last_value->first_name,
     ];
-    $form['last_name'] = [
+    $form ['last_name'] = [
       '#type' => 'textfield',
-      '#title' => t('Last Name'),
+      '#title' => t('Enter Last Name'),
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => TRUE,
-      '#default_value' => $last_value->last_name
+      '#default_value' => $last_value->last_name,
     ];
-     
-
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Submit')
     ];
 
-    return $form;
-  }
-
-
-public function submitForm(array &$form, FormStateInterface $form_state) {
-
-   $result = $this->db->insert('d8_demo')
-  ->fields([
-    'first_name' => $form_state->getValue('first_name'),
-    'last_name' => $form_state->getValue('last_name'),
-
-  ])
-  ->execute();
-
+   return $form;
+}
+public function SubmitForm(array &$form, FormStateInterface $form_state){
+  $this->dc->insertToTable(
+  $form_state->getValue('first_name'),
+  $form_state->getValue('last_name')
+    );
     $this->messenger()->addMessage(
       $this->t('Form submitted successfully.')
     );
-}
+    }
 
 }
