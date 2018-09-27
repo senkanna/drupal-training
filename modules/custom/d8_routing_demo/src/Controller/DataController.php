@@ -4,23 +4,30 @@ namespace Drupal\d8_routing_demo\Controller;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Drupal\d8_routing_demo\Event\DataEntryEvent;
 
 class DataController implements ContainerInjectionInterface{
 
-protected $db;
-public function __construct(Connection $db) {
-    $this->db = $db;
-  }
+  protected $connection;
+  protected $dispatcher;
 
-public static function create(ContainerInterface $container) {
+  public function __construct(Connection $connection, ContainerAwareEventDispatcher $dispatcher) {
+    $this->connection = $connection;
+    $this->dispatcher = $dispatcher;
+  }
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('database')
+      $container->get('database'),
+      $container->get('event_dispatcher')
     );
   }
+public function getLastEntry(){
 
-function getLastEntry(){
-
-   $results = $this->db->select('d8_demo', 'dd')
+   $results = $this->connection->select('d8_demo', 'dd')
       ->fields('dd')
       ->orderBy('id', 'DESC')
       ->range(0,1)
@@ -29,15 +36,17 @@ function getLastEntry(){
     $last_value = $results[0];
     return $last_value;
 }
-function insertToTable($first_name,$last_name){
+public function insertToTable($firstName, $lastName) {
+    $this->connection->insert('d8_demo')
+      ->fields([
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+      ])
+      ->execute();
 
-    $this->db->insert('d8_demo')
-        ->fields([
-        'first_name' => $first_name,
-         'last_name' => $last_name,
-        ])
-        ->execute();
-
-}
-
+    $this->dispatcher->dispatch(
+      DataEntryEvent::DATA_INSERT,
+      new DataEntryEvent($firstName,$lastName)
+    );
+  }
 }

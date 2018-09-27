@@ -1,9 +1,14 @@
 services:
   d8_routing_demo.data_controller:
     class: Drupal\d8_routing_demo\Controller\DataController
-    arguments: ['@database']
+    arguments: ['@database','@event_dispatcher']
   d8_routing_demo_kernal_response_subscriber:
     class: Drupal\d8_routing_demo\EventSubscriber\KernalResponseSubscriber
     arguments: ['@path.current']
+    tags:
+      - { name: event_subscriber }
+  d8_routing_demo.data_entry_event_subscriber:
+    class: Drupal\d8_routing_demo\EventSubscriber\DataEntryEvent
+    arguments: ['@logger.dblog']
     tags:
       - { name: event_subscriber }

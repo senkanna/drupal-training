@@ -47,7 +47,7 @@ class KernalResponseSubscriber implements EventSubscriberInterface {
       $response = $event->getResponse();
       $response->headers->set('access-control-allow-origin', '*');
     }
-    drupal_set_message('Event KernelEvents::RESPONSE thrown by Subscriber in module d8_routing_demo.', 'status', TRUE);
+ 
   }
 
 }
