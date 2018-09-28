@@ -1,0 +1,17 @@
+name: NewCustomTheme
+type: theme
+description: 'My Awesome theme'
+package: Other
+core: 8.x
+libraries:
+  - newcustomtheme/global-styling
+ 
+base theme: classy
+#Using Classy as a base theme https://www.drupal.org/theme-guide/8/classy
+
+regions:
+  header: Header
+  navigation: Navigation
+  content: Content
+  aside: Aside
+  footer: Footer

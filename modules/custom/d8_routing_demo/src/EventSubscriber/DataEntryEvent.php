@@ -41,7 +41,6 @@ class DataEntryEvent implements EventSubscriberInterface {
    */
   public function logFirstLastname(Event $event) {
 
-
    \Drupal::logger('system')->info($event->firstName .''.$event->lastName);
   }
 

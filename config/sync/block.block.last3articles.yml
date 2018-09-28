@@ -1,0 +1,20 @@
+uuid: 9d3fb181-7802-4298-89e8-f714ce1dc3db
+langcode: en
+status: true
+dependencies:
+  module:
+    - d8_routing_demo
+  theme:
+    - bartik
+id: last3articles
+theme: bartik
+region: sidebar_second
+weight: 0
+provider: null
+plugin: last3articles_block
+settings:
+  id: last3articles_block
+  label: 'Last 3 Articles'
+  provider: d8_routing_demo
+  label_display: visible
+visibility: {  }
